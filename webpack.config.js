@@ -3,7 +3,8 @@ module.exports = {
 	entry: './src/app.js',
 	output: {
 		path: __dirname + '/dist',
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
 	module: {
 		loaders: [
@@ -24,5 +25,8 @@ module.exports = {
 		        loader: 'file-loader'
 		    }
 		]
-	}
+	},
+	devServer: {
+    	historyApiFallback: true
+  	}
 }
