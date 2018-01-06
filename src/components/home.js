@@ -29,7 +29,7 @@ export default class Home extends React.Component {
 	render() {
 		const topGamesData = this.state.topGames.map((item, index) => {
 			return(
-				<div>
+				<div key={index}>
 					<p>{item.viewers}</p>
 					<Link to={{ pathname: '/game', state: { query: item.game.name} }}>{item.game.name}</Link>
 				</div>
