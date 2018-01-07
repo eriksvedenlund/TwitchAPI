@@ -26,19 +26,24 @@ export default class Game extends React.Component{
 		.catch(err => console.error(err))
 	}
 
+	renderStreams = () => {
+		return(
+			this.state.topStreams.map((item, index) => {
+				return(
+					<div key={index}>
+						<h2>{item.channel.display_name}</h2>
+						<p>{item.viewers}</p>
+					</div>
+				);
+			})
+		);
+	}
+
 	render(){
-		const topStreamsdata = this.state.topStreams.map((item, index) => {
-			return(
-				<div key={index}>
-					<h2>{item.channel.display_name}</h2>
-					<p>{item.viewers}</p>
-				</div>
-			);
-		});
 		return(
 			<div>
 				<h1>game page</h1>
-				{topStreamsdata}
+				{this.renderStreams()}
 			</div>
 		);
 	}
