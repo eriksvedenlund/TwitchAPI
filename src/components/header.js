@@ -14,7 +14,8 @@ export default class Header extends React.Component {
 		}
 	}
 
-	search = () => {
+	search = (event) => {
+		event.preventDefault();
 		const query = this.state.inputVal;
 		if(query){
 			const gameUrl = 'https://api.twitch.tv/kraken/search/games?query=' + query + '&type=suggest&live=true'
@@ -72,8 +73,10 @@ export default class Header extends React.Component {
 		return(
 			<div>
 				<h1>this is the header</h1>
-				<input type="text" onChange={this.handleChange}/>
-				<button onClick={this.search}>search</button>
+				<form>
+					<input type="text" onChange={this.handleChange}/>
+					<button onClick={this.search}>search</button>
+				</form>
 				<Searches gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
 			</div>
 		);
