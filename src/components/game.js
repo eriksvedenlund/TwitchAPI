@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Header from './header';
 
 export default class Game extends React.Component{
 	constructor(){
@@ -42,6 +43,7 @@ export default class Game extends React.Component{
 	render(){
 		return(
 			<div>
+				<Header />
 				<h1>game page</h1>
 				{this.renderStreams()}
 			</div>
