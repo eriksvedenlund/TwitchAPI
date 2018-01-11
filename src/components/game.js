@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Header from './header';
+import { Link } from 'react-router-dom';
 
 export default class Game extends React.Component{
 	constructor(){
@@ -30,10 +31,14 @@ export default class Game extends React.Component{
 	renderStreams = () => {
 		return(
 			this.state.topStreams.map((item, index) => {
+				console.log(item);
 				return(
 					<div key={index}>
-						<h2>{item.channel.display_name}</h2>
-						<p>{item.viewers}</p>
+						<Link to={item.channel.url} target="_blank">
+							<img src={item.preview.medium} />
+						</Link>
+						<Link to={item.channel.url} target="_blank"><h2>{item.channel.display_name}</h2></Link>
+						<p>Viewers: {item.viewers}</p>
 					</div>
 				);
 			})
