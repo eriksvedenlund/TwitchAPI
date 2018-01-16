@@ -1,0 +1,58 @@
+.streamContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.streamBox {
+	margin: 5px;
+	border: 2px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-size: 100% 100%;
+}
+
+.channelLogo {
+	width: 60px;
+	height: 60px;
+}
+
+.channelBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	border: 2px solid black;
+	width: 80%;
+	margin: 5px;
+	background-color: white;
+}
+
+.statsBox {
+	display: flex;
+	flex-direction: column;
+}
+
+.placeholderBox{
+	width: 50px;
+	height: 50px;
+	background-color: black;
+}
+
+.previewImg {
+	width: 250px;
+}
+
+.liveIcon {
+	width: 16px;
+	height: 16px;
+	background-color: red;
+	border-radius: 50%;
+	position: relative;
+    bottom: 140px;
+    right: 110px;
+
+    p {
+    	color: white;
+    	margin-top: 20px;
+    }
+}

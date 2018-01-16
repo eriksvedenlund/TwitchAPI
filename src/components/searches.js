@@ -9,10 +9,10 @@ export default class Searches extends React.Component {
 			this.props.gameSearches.map((item, index) => {
 				return(
 					<div key={index}>
-						<Link to={{ pathname: '/game', state: { query: item.name} }}>
+						<Link to={{ pathname: `/game/${item.name}`, state: { query: item.name} }}>
 							<img src={item.box.small} />
 						</Link>
-						<Link to={{ pathname: '/game', state: { query: item.name} }}><h2>{item.name}</h2></Link>
+						<Link to={{ pathname: `/game/${item.name}`, state: { query: item.name} }}><h2>{item.name}</h2></Link>
 					</div>
 				);
 			})
@@ -27,7 +27,7 @@ export default class Searches extends React.Component {
 						<img src={item.preview.small} />
 						<h2>{item.channel.display_name}</h2>
 						<h3>Viewers: {item.viewers}</h3>
-						<Link to={{ pathname: '/game', state: { query: item.game} }}><h3>{item.game}</h3></Link>
+						<Link to={{ pathname: `/game/${item.name}`, state: { query: item.game} }}><h3>{item.game}</h3></Link>
 					</div>
 				);
 			})
@@ -37,7 +37,6 @@ export default class Searches extends React.Component {
 	renderChannels = () => {
 		return(
 			this.props.channelSearches.map((item, index) => {
-				console.log(item);
 				return(
 					<div key={index}>
 						<img src={item.logo} style={{width: '50px', heigth: '50px'}} />
