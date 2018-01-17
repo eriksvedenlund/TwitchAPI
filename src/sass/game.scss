@@ -1,10 +1,12 @@
 .streamContainer {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .streamBox {
-	margin: 5px;
+	width: 90%;
+	margin: 8px;
 	border: 2px solid black;
 	display: flex;
 	flex-direction: column;
@@ -32,14 +34,14 @@
 	flex-direction: column;
 }
 
-.placeholderBox{
-	width: 50px;
-	height: 50px;
-	background-color: black;
+.starIcon {
+	font-size: 30px;
+	cursor: pointer;
 }
 
 .previewImg {
 	width: 250px;
+	border: 1px solid black;
 }
 
 .liveIcon {

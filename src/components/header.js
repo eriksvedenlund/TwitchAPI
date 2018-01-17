@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Searches from './searches';
+import {Button, Icon} from 'react-materialize';
 
 export default class Header extends React.Component {
 	constructor(){
@@ -31,7 +32,7 @@ export default class Header extends React.Component {
 				})
 			.catch(err => console.error(err));
 
-			const streamUrl = 'https://api.twitch.tv/kraken/search/streams?query=' + query + '&limit=6';
+			const streamUrl = 'https://api.twitch.tv/kraken/search/streams?query=' + query + '&limit=3';
 			axios.get(streamUrl, {
 				headers: {
 		   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'
@@ -44,7 +45,7 @@ export default class Header extends React.Component {
 				})
 			.catch(err => console.error(err))
 
-			const channelUrl = 'https://api.twitch.tv/kraken/search/channels?query=' + query + '&limit=6';
+			const channelUrl = 'https://api.twitch.tv/kraken/search/channels?query=' + query + '&limit=2';
 			axios.get(channelUrl, {
 				headers: {
 		   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'
@@ -69,15 +70,24 @@ export default class Header extends React.Component {
 		this.setState({ inputVal: event.target.value });
 	}
 
+	close = () => {
+		this.setState({
+			gameSearches: [],
+			streamSearches: [],
+			channelSearches: []
+		});
+	}
+
 	render(){
 		return(
 			<div>
-				<h1>this is the header</h1>
-				<form>
-					<input type="text" onChange={this.handleChange}/>
-					<button onClick={this.search}>search</button>
-				</form>
-				<Searches gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
+				<header>
+					<form>
+						<input type="text" onChange={this.handleChange}/>
+						<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
+					</form>
+				</header>
+				<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
 			</div>
 		);
 	}

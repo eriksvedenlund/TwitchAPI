@@ -31,9 +31,9 @@ export default class Home extends React.Component {
 		return (
 			this.state.topGames.map((item, index) => {
 				return(
-					<div key={index}>
+					<div key={index} className="gameBox">
 						<Link to={{ pathname: `/game/${item.game.name}`, state: { query: item.game.name} }}>
-							<img src={item.game.box.medium} />
+							<img src={item.game.box.large} />
 						</Link>
 						<Link to={{ pathname: `/game/${item.game.name}`, state: { query: item.game.name} }}><p>{item.game.name}</p></Link>
 						<p>Viewers: {item.viewers}</p>
@@ -47,8 +47,9 @@ export default class Home extends React.Component {
 		return(
 			<div>
 				<Header />
-				<h1>home</h1>
-				{this.renderGames()}
+				<div className="homeContainer">
+					{this.renderGames()}
+				</div>
 			</div>
 		);
 	}
