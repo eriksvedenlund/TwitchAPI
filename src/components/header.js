@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Searches from './searches';
 import {Button, Icon} from 'react-materialize';
+import Searches from './searches';
 
 export default class Header extends React.Component {
 	constructor(){

@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import Header from './header';
-import StreamCard from './streamCard';
 import { Link } from 'react-router-dom';
-import twitchbg from '../images/twitchbg1.jpg';
 import {Icon} from 'react-materialize';
+import twitchbg from '../images/twitchbg1.jpg';
+import StreamCard from './streamCard';
+import Header from './header';
 
 export default class Game extends React.Component{
 	constructor(){

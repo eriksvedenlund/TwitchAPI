@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Header from './header';
+import firebase from 'firebase';
 
 export default class Home extends React.Component {
 	constructor(){
@@ -27,6 +28,12 @@ export default class Home extends React.Component {
 		.catch(err => console.error(err))
 	}
 
+	signOut = () => {
+		firebase.auth().signOut()
+			.then(() => console.log("signed out succesful"))
+			.catch(() => console.log("sign out failed"))
+	}
+
 	renderGames = () => {
 		return (
 			this.state.topGames.map((item, index) => {
@@ -50,6 +57,7 @@ export default class Home extends React.Component {
 				<div className="homeContainer">
 					{this.renderGames()}
 				</div>
+				<button onClick={this.signOut}>sign out</button>
 			</div>
 		);
 	}
