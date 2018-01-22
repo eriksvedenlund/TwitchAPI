@@ -1,0 +1,15 @@
+.notFoundContainer {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	h2 {
+		margin-top: 0;
+	}
+
+	img {
+		width: 500px;
+		height: 450px;
+	}
+}

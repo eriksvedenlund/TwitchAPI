@@ -12,10 +12,10 @@ export default class Searches extends React.Component {
 			this.props.gameSearches.slice(0, 3).map((item, index) => {
 				return(
 					<div key={index} className="searchGameBox">
-						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`, state: { query: item.name } }}>
+						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`}}>
 							<img src={item.box.medium} />
 						</Link>
-						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`, state: { query: item.name} }}><p>{item.name}</p></Link>
+						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`}}><p>{item.name}</p></Link>
 					</div>
 				);
 			})
