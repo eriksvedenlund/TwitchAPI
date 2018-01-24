@@ -17,7 +17,7 @@ export default class Game extends React.Component{
 
 	componentDidMount = () => {
 		const query = this.props.match.params.id;
-		const url = 'https://api.twitch.tv/kraken/search/streams?query=' + query + '&limit=5';
+		const url = 'https://api.twitch.tv/kraken/streams?game=' + query + '&limit=5';
 		axios.get(url, {
 			headers: {
 	   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'
@@ -34,7 +34,7 @@ export default class Game extends React.Component{
 	componentDidUpdate = (prevProps, prevState) => {
 		if(prevProps.match.params.id !== this.props.match.params.id){
 			const query = this.props.match.params.id;
-			const url = 'https://api.twitch.tv/kraken/search/streams?query=' + query + '&limit=5';
+			const url = 'https://api.twitch.tv/kraken/streams?game=' + query + '&limit=5';
 			axios.get(url, {
 				headers: {
 		   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'

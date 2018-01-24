@@ -1,0 +1,23 @@
+.loginContainer {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+
+	form {
+		width: 400px;
+		border: 1px solid black;
+		padding: 20px;
+		box-shadow: 4px 4px 4px #666;
+
+		p {
+			text-align: center;
+		}
+	}
+}
+
+.btnContainer {
+	display: flex;
+	justify-content: center;
+}

@@ -3,8 +3,9 @@
 @import './header.scss';
 @import './searches.scss';
 @import './notFound.scss';
+@import './loginForm.scss';
 
-html, body {
+html, body, #root, .contentContainer {
 	margin: 0;
 	width: 100%;
 	height: 100%;

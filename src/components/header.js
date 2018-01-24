@@ -2,16 +2,20 @@ import React from 'react';
 import axios from 'axios';
 import {Button, Icon} from 'react-materialize';
 import Searches from './searches';
+import firebase from 'firebase';
 
 export default class Header extends React.Component {
 	constructor(){
 		super();
+		
+		let user = firebase.auth().currentUser;
 
 		this.state = {
 			gameSearches: [],
 			streamSearches: [],
 			channelSearches: [],
-			inputVal: ''
+			inputVal: '',
+			userName: user.displayName
 		}
 	}
 
@@ -32,7 +36,7 @@ export default class Header extends React.Component {
 				})
 			.catch(err => console.error(err));
 
-			const streamUrl = 'https://api.twitch.tv/kraken/search/streams?query=' + query + '&limit=3';
+			const streamUrl = 'https://api.twitch.tv/kraken/streams?game=' + query + '&limit=3';
 			axios.get(streamUrl, {
 				headers: {
 		   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'
@@ -86,6 +90,10 @@ export default class Header extends React.Component {
 						<input type="text" onChange={this.handleChange}/>
 						<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
 					</form>
+					<div>
+						<h5><Icon left>account_circle</Icon>{this.state.userName}</h5>
+						<Button>Sign Out</Button>
+					</div>
 				</header>
 				<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
 			</div>
