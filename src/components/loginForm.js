@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Redirect } from 'react-router-dom';
 import { Button, Icon, Input } from 'react-materialize';
 
 export default class LoginForm extends React.Component {
@@ -15,7 +16,8 @@ export default class LoginForm extends React.Component {
 			signUpPassword: '',
 			signUpConfirmPassword: '',
 			logInError: '',
-			signUpError: ''
+			signUpError: '',
+			redirect: false
 		}
 	}
 
@@ -49,7 +51,10 @@ export default class LoginForm extends React.Component {
 		// this.setState({ logInError: '' });
 
 		firebase.auth().signInWithEmailAndPassword(this.state.logInEmail, this.state.logInPassword)
-			.then(() => console.log("logged in succesful"))
+			.then((user) => {
+				this.props.setCurrentUser(user);
+				this.setState({ redirect: true });
+			})
 			.catch(() => {
 				this.setState({ logInError: 'Wrong Email or Password' });
 			});
@@ -64,6 +69,8 @@ export default class LoginForm extends React.Component {
 			firebase.auth().createUserWithEmailAndPassword(this.state.signUpEmail, this.state.signUpPassword)
 				.then((user) => {
 					user.updateProfile({ displayName: this.state.userName });
+					this.props.setCurrentUser(user);
+					this.setState({ redirect: true });
 				})
 				.catch(() => {
 					this.setState({ signUpError: 'User already exist' });
@@ -74,17 +81,20 @@ export default class LoginForm extends React.Component {
 	}
 
 	render(){
+		if(this.state.redirect === true){
+			return <Redirect to='/home' /> 
+		}
 		return(
 			<div className="loginContainer">
 				<form onSubmit={this.logIn}>
-					<Input label="Email" placeholder="contact@example.com" type="email" onChange={this.logInEmailChange}><Icon>account_circle</Icon></Input>
+					<Input label="Email" type="email" onChange={this.logInEmailChange}><Icon>mail_outline</Icon></Input>
 					<Input label="Password" type="password" onChange={this.logInPasswordChange}><Icon>lock_outline</Icon></Input>
 					<div className="btnContainer"><Button>Log in</Button></div>
 					<p>{this.state.logInError}</p>
 				</form>
 				<form onSubmit={this.signUp}>
 					<Input label="User Name" type="text" onChange={this.userNameChange}><Icon>account_circle</Icon></Input>
-					<Input label="Email" type="email" placeholder="contact@example.com" onChange={this.signUpEmailChange}><Icon>account_circle</Icon></Input>
+					<Input label="Email" type="email" onChange={this.signUpEmailChange}><Icon>mail_outline</Icon></Input>
 					<Input label="Password" type="password" onChange={this.signUpPasswordChange}><Icon>lock_outline</Icon></Input>
 					<Input label="Confirm Password" type="password" onChange={this.signUpConfirmPasswordChange}><Icon>lock_outline</Icon></Input>
 					<div className="btnContainer"><Button>Sign up</Button></div>

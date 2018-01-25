@@ -1,21 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 import {Button, Icon} from 'react-materialize';
+import { Link } from 'react-router-dom';
 import Searches from './searches';
 import firebase from 'firebase';
 
 export default class Header extends React.Component {
 	constructor(){
 		super();
-		
-		let user = firebase.auth().currentUser;
 
 		this.state = {
 			gameSearches: [],
 			streamSearches: [],
 			channelSearches: [],
-			inputVal: '',
-			userName: user.displayName
+			inputVal: ''
 		}
 	}
 
@@ -91,8 +89,11 @@ export default class Header extends React.Component {
 						<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
 					</form>
 					<div>
-						<h5><Icon left>account_circle</Icon>{this.state.userName}</h5>
-						<Button>Sign Out</Button>
+						{this.props.loggedIn &&
+							<h5><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</h5>	
+						}
+						<Link to='/logout'><Button>Sign Out</Button></Link>
+						<Link to='/home'><Button>Home</Button></Link>
 					</div>
 				</header>
 				<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>

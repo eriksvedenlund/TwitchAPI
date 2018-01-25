@@ -29,12 +29,6 @@ export default class Home extends React.Component {
 		.catch(err => console.error(err))
 	}
 
-	signOut = () => {
-		firebase.auth().signOut()
-			.then(() => console.log("signed out succesful"))
-			.catch(() => console.log("sign out failed"))
-	}
-
 	renderGames = () => {
 		return (
 			this.state.topGames.map((item, index) => {
@@ -54,11 +48,9 @@ export default class Home extends React.Component {
 	render() {
 		return(
 			<div>
-				<Header />
 				<div className="homeContainer">
 					{this.renderGames()}
 				</div>
-				<button onClick={this.signOut}>sign out</button>
 			</div>
 		);
 	}

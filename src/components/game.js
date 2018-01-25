@@ -68,7 +68,6 @@ export default class Game extends React.Component{
 	render(){
 		return(
 			<div>
-				<Header />
 				<div className="streamContainer">
 					{this.renderStreams()}
 				</div>
