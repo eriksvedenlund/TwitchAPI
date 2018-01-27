@@ -48,8 +48,6 @@ export default class LoginForm extends React.Component {
 	logIn = (event) => {
 		event.preventDefault();
 
-		// this.setState({ logInError: '' });
-
 		firebase.auth().signInWithEmailAndPassword(this.state.logInEmail, this.state.logInPassword)
 			.then((user) => {
 				this.props.setCurrentUser(user);
@@ -63,26 +61,32 @@ export default class LoginForm extends React.Component {
 	signUp = (event) => {
 		event.preventDefault();
 		
-		// this.setState({ signUpError: '' });
-
-		if(this.state.signUpPassword === this.state.signUpConfirmPassword){
-			firebase.auth().createUserWithEmailAndPassword(this.state.signUpEmail, this.state.signUpPassword)
-				.then((user) => {
-					user.updateProfile({ displayName: this.state.userName });
-					this.props.setCurrentUser(user);
-					this.setState({ redirect: true });
-				})
-				.catch(() => {
-					this.setState({ signUpError: 'User already exist' });
-				});
+		if(this.state.userName !== ''){
+			if(this.state.signUpPassword === this.state.signUpConfirmPassword){
+				if(this.state.signUpPassword.length >= 6 || this.state.signUpConfirmPassword.length >= 6){
+					firebase.auth().createUserWithEmailAndPassword(this.state.signUpEmail, this.state.signUpPassword)
+						.then((user) => {
+							user.updateProfile({ displayName: this.state.userName });
+							this.props.setCurrentUser(user);
+							this.setState({ redirect: true });
+						})
+						.catch(() => {
+							this.setState({ signUpError: 'User already exist' });
+						});
+				} else {
+					this.setState({ signUpError: 'Password must be atleast 6 characters' });
+				}
+			} else {
+				this.setState({ signUpError: 'Passwords not matching' });
+			}
 		} else {
-			this.setState({ signUpError: 'Passwords not matching' });
+			this.setState({ signUpError: 'Please enter a user name'});
 		}
 	}
 
 	render(){
 		if(this.state.redirect === true){
-			return <Redirect to='/home' /> 
+			return <Redirect to='/directory' /> 
 		}
 		return(
 			<div className="loginContainer">
@@ -93,7 +97,7 @@ export default class LoginForm extends React.Component {
 					<p>{this.state.logInError}</p>
 				</form>
 				<form onSubmit={this.signUp}>
-					<Input label="User Name" type="text" onChange={this.userNameChange}><Icon>account_circle</Icon></Input>
+					<Input label="User name" type="text" onChange={this.userNameChange}><Icon>account_circle</Icon></Input>
 					<Input label="Email" type="email" onChange={this.signUpEmailChange}><Icon>mail_outline</Icon></Input>
 					<Input label="Password" type="password" onChange={this.signUpPasswordChange}><Icon>lock_outline</Icon></Input>
 					<Input label="Confirm Password" type="password" onChange={this.signUpConfirmPasswordChange}><Icon>lock_outline</Icon></Input>

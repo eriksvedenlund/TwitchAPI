@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import {Icon} from 'react-materialize';
+import { Icon, Preloader } from 'react-materialize';
 import twitchbg from '../images/twitchbg1.jpg';
 import StreamCard from './streamCard';
 import Header from './header';
@@ -11,7 +11,8 @@ export default class Game extends React.Component{
 		super();
 
 		this.state = {
-			topStreams: []
+			topStreams: [],
+			isLoading: true
 		}
 	}
 
@@ -25,7 +26,8 @@ export default class Game extends React.Component{
 	 		})
 			.then(res => {
 				this.setState({
-					topStreams: res.data.streams
+					topStreams: res.data.streams,
+					isLoading: false
 				});
 			})
 		.catch(err => console.error(err))
@@ -66,12 +68,16 @@ export default class Game extends React.Component{
 	}
 
 	render(){
-		return(
-			<div>
+		if(this.state.isLoading === true){
+			return(
+				<div className="loaderContainer"><Preloader size='big' /></div>
+			);
+		} else {
+			return(
 				<div className="streamContainer">
 					{this.renderStreams()}
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 }

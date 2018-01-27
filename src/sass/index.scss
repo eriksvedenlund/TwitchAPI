@@ -1,5 +1,5 @@
 @import './game.scss';
-@import './home.scss';
+@import './directory.scss';
 @import './header.scss';
 @import './searches.scss';
 @import './notFound.scss';
@@ -9,4 +9,12 @@ html, body, #root, .contentContainer {
 	margin: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.loaderContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

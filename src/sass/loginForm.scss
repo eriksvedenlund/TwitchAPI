@@ -1,14 +1,14 @@
 .loginContainer {
 	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-around;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding-top: 40px;
 
 	form {
 		width: 400px;
 		border: 1px solid black;
-		padding: 20px;
+		padding: 10px;
 		box-shadow: 4px 4px 4px #666;
 
 		p {

@@ -6,12 +6,21 @@
 
 .streamBox {
 	width: 90%;
+	height: 280px;
 	margin: 8px;
 	border: 2px solid black;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	background-size: 100% 100%;
+}
+
+.overlay {
+    position: absolute;
+   	background-color: black;
+   	width: inherit;
+   	height: inherit;
+   	opacity: 0.5;
 }
 
 .channelLogo {
@@ -27,6 +36,7 @@
 	width: 80%;
 	margin: 5px;
 	background-color: white;
+	z-index: 1;
 }
 
 .statsBox {
@@ -34,14 +44,19 @@
 	flex-direction: column;
 }
 
-.starIcon {
+.heartIcon {
 	font-size: 30px;
 	cursor: pointer;
+}
+
+.previewContainer {
+	z-index: 1;
 }
 
 .previewImg {
 	width: 250px;
 	border: 1px solid black;
+	z-index: 1;
 }
 
 .liveIcon {
@@ -52,6 +67,7 @@
 	position: relative;
     bottom: 140px;
     right: 110px;
+    z-index: 1;
 
     p {
     	color: white;

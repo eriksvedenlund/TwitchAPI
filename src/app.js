@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import firebase from 'firebase';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Home from './components/home';
+import { Preloader } from 'react-materialize';
+import Directory from './components/directory';
 import Game from './components/game';
 import NotFound from './components/notFound';
 import LoginForm from './components/loginForm';
@@ -11,7 +12,7 @@ import Header from './components/header';
 import Logout from './components/logout';
 import './sass/index.scss';
 
-function PrivateRoute({component: Component, authenticated, ...rest}) {
+const PrivateRoute = ({component: Component, authenticated, ...rest}) => {
 	return (
 		<Route
 		 {...rest}
@@ -69,19 +70,19 @@ export default class App extends Component {
 	render(){
 		if(this.state.loggedIn === null){
 			return(
-				<div>Vänta lite vänligen</div>
+				<div className="loaderContainer"><Preloader size='big' /></div>
 			);
 		} else {
 			return(
 				<BrowserRouter>
-					<div>
+					<div style={{height: '100%'}}>
 						<Header loggedIn={this.state.loggedIn} currentUser={this.state.currentUser}/>
 						<Switch>
 							<Route exact path='/' render={(props) => {
 								return <LoginForm setCurrentUser={this.setCurrentUser} {...props} />
 							}} />
 						    <PrivateRoute path='/game/:id' authenticated={this.state.loggedIn} component={Game}/>
-						    <PrivateRoute exact path='/home' authenticated={this.state.loggedIn} component={Home}/>
+						    <PrivateRoute exact path='/directory' authenticated={this.state.loggedIn} component={Directory}/>
 						    <Route path='/logout' component={Logout}/>
 						    <Route path="*" component={NotFound}/>
 						</Switch>

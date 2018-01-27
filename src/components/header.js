@@ -81,23 +81,25 @@ export default class Header extends React.Component {
 	}
 
 	render(){
-		return(
-			<div>
-				<header>
-					<form>
-						<input type="text" onChange={this.handleChange}/>
-						<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
-					</form>
-					<div>
-						{this.props.loggedIn &&
-							<h5><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</h5>	
-						}
-						<Link to='/logout'><Button>Sign Out</Button></Link>
-						<Link to='/home'><Button>Home</Button></Link>
-					</div>
-				</header>
-				<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
-			</div>
-		);
+		if(this.props.loggedIn === true){
+			return(
+				<div>
+					<header>
+						<Link to='/directory'><Button>Directory</Button></Link>
+						<form>
+							<input type="text" onChange={this.handleChange}/>
+							<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
+						</form>
+						<div>
+							<div className="userName"><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</div>	
+							<Link to='/logout'><Button>Sign Out</Button></Link>
+						</div>
+					</header>
+					<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
+				</div>
+			);
+		} else {
+			return null;
+		}
 	}
 }

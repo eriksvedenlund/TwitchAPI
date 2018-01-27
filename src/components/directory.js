@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+import { Preloader } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import Header from './header';
 import firebase from 'firebase';
 
-export default class Home extends React.Component {
+export default class Directory extends React.Component {
 	constructor(){
 		super();
 
 		this.state = {
-			topGames: []
+			topGames: [],
+			isLoading: true
 		}
 
 	}
@@ -23,7 +25,8 @@ export default class Home extends React.Component {
 	 		})
 			.then(res => {
 				this.setState({
-					topGames: res.data.top
+					topGames: res.data.top,
+					isLoading: false
 				});
 			})
 		.catch(err => console.error(err))
@@ -46,12 +49,16 @@ export default class Home extends React.Component {
 	}
 
 	render() {
-		return(
-			<div>
-				<div className="homeContainer">
+		if(this.state.isLoading === true){
+			return(
+				<div className="loaderContainer"><Preloader size='big' /></div>
+			);
+		} else {
+			return(
+				<div className="directoryContainer">
 					{this.renderGames()}
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 }
