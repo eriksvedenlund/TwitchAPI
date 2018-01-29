@@ -10,29 +10,17 @@ export default class Searches extends React.Component {
 	renderGames = () => {
 		return(
 			this.props.gameSearches.slice(0, 3).map((item, index) => {
+				console.log(item);
 				return(
-					<div key={index} className="searchGameBox">
-						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`}}>
-							<img src={item.box.medium} />
-						</Link>
-						<Link onClick={this.props.close} to={{ pathname: `/game/${item.name}`}}><p>{item.name}</p></Link>
-					</div>
-				);
-			})
-		);
-	}
-
-	renderStreams = () => {
-		let backgroundImage;
-		return(
-			this.props.streamSearches.map((item, index) => {
-				if(item.channel.profile_banner === null){
-					backgroundImage = {backgroundImage: `url('${twitchbg}')`};
-				} else {
-					backgroundImage = {backgroundImage: `url('${item.channel.profile_banner}')`};
-				}
-				return(
-					<StreamCard backgroundImage={backgroundImage} item={item} key={index} />
+					<Link onClick={this.props.close} key={index} to={{ pathname: `/game/${item.name}`}}>
+						<div className="searchGameBox">
+								<img src={item.box.medium} />
+								<div>
+									<p><Icon left>videogame_asset</Icon>{item.name}</p>
+									<p><Icon left>visibility</Icon>{item.popularity}</p>
+								</div>
+						</div>
+					</Link>
 				);
 			})
 		);
@@ -42,24 +30,17 @@ export default class Searches extends React.Component {
 		let backgroundImage;
 		return(
 			this.props.channelSearches.map((item, index) => {
-				if(item.profile_banner === null){
-					backgroundImage = {backgroundImage: `url('${twitchbg}')`};
-				} else {
-					backgroundImage = {backgroundImage: `url('${item.profile_banner}')`};
-				}
 				return(
-					<div style={backgroundImage} key={index} className="streamBox">
-						<div className="channelBox">
-							<img src={item.logo} className="channelLogo" />
-							<div className="statsBox">
-								<Link to={item.url} target="_blank"><p>{item.display_name}</p></Link>
-							</div>
-							<div className="statsBox">
-								<p>Total Views: {item.views}</p>	
-								<p>Followers: {item.followers}</p>
-							</div>
-							<Icon className="starIcon">star_border</Icon>	
+					<div key={index} className="searchChannelBox">
+						<img src={item.logo} className="channelLogo" />
+						<div className="statsBox">
+							<Link to={item.url} target="_blank"><p><Icon left>account_circle</Icon>{item.display_name}</p></Link>
 						</div>
+						<div className="statsBox">
+							<p><Icon left>visibility</Icon>{item.views}</p>	
+							<p><Icon left>favorite</Icon>{item.followers}</p>
+						</div>
+						<Icon className="heartIcon">favorite_border</Icon>	
 					</div>
 				);
 			})
@@ -67,45 +48,28 @@ export default class Searches extends React.Component {
 	}
 
 	render(){
-		if(this.props.gameSearches.length > 0 || this.props.streamSearches.length > 0 || this.props.channelSearches.length > 0) {
+		// if(this.props.gameSearches.length > 0 || this.props.channelSearches.length > 0) {
 			return(
 				<div className="searchesContainer">
-					<div className="searchesWrapper">
-						{this.props.gameSearches.length > 0 ? (
-							<span onClick={this.props.close}><Icon className="closeIcon">close</Icon></span>
-			            ) : (this.props.streamSearches.length > 0 ? (
-			            	<span onClick={this.props.close}><Icon className="closeIcon">close</Icon></span>
-			            ) : (this.props.channelSearches.length > 0 ? (
-			            	<span onClick={this.props.close}><Icon className="closeIcon">close</Icon></span>
-			            ) : (
-			            	<div></div>
-			            )))}
 						{this.props.gameSearches.length > 0 && 
-							<h3>Games</h3>
+							<h5 style={{textAlign: 'center'}}>Games</h5>
 						}
 						<div className="searchGameContainer">
 							{this.renderGames()}
 						</div>
-						{this.props.streamSearches.length > 0 &&
-							<h3>Live</h3>
-						}
-						<div className="searchStreamContainer">
-							{this.renderStreams()}
-						</div>
 						{this.props.channelSearches.length > 0 &&
-							<h3>Channels</h3>
+							<h5 style={{textAlign: 'center'}}>Channels</h5>
 						}
 						<div className="searchChannelContainer">
 							{this.renderChannels()}
 						</div>
-					</div>
 				</div>
 			);
-		}
-		else {
-			return(
-				<div></div>
-			);
-		}
+		// }
+		// else {
+		// 	return(
+		// 		null
+		// 	);
+		// }
 	}
 }

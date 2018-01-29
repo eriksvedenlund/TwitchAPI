@@ -11,16 +11,15 @@ export default class Header extends React.Component {
 
 		this.state = {
 			gameSearches: [],
-			streamSearches: [],
 			channelSearches: [],
 			inputVal: ''
 		}
 	}
 
 	search = (event) => {
-		event.preventDefault();
-		const query = this.state.inputVal;
+		const query = event.target.value;
 		if(query){
+			document.querySelector('.searchesContainer').style.display = 'flex';
 			const gameUrl = 'https://api.twitch.tv/kraken/search/games?query=' + query + '&type=suggest&live=true'
 			axios.get(gameUrl, {
 				headers: {
@@ -33,19 +32,6 @@ export default class Header extends React.Component {
 					});
 				})
 			.catch(err => console.error(err));
-
-			const streamUrl = 'https://api.twitch.tv/kraken/streams?game=' + query + '&limit=3';
-			axios.get(streamUrl, {
-				headers: {
-		   			'Client-ID': 'aaf1nw0m0glpzetrm6ddc0vto6ll7f'
-		 			}
-		 		})
-				.then(res => {
-					this.setState({
-						streamSearches: res.data.streams
-					});
-				})
-			.catch(err => console.error(err))
 
 			const channelUrl = 'https://api.twitch.tv/kraken/search/channels?query=' + query + '&limit=2';
 			axios.get(channelUrl, {
@@ -60,22 +46,17 @@ export default class Header extends React.Component {
 				})
 			.catch(err => console.error(err))
 		} else {
+			document.querySelector('.searchesContainer').style.display = 'none';
 			this.setState({
 				gameSearches: [],
-				streamSearches: [],
 				channelSearches: []
 			});
 		}
 	}
 
-	handleChange = (event) => {
-		this.setState({ inputVal: event.target.value });
-	}
-
 	close = () => {
 		this.setState({
 			gameSearches: [],
-			streamSearches: [],
 			channelSearches: []
 		});
 	}
@@ -86,16 +67,13 @@ export default class Header extends React.Component {
 				<div>
 					<header>
 						<Link to='/directory'><Button>Directory</Button></Link>
-						<form>
-							<input type="text" onChange={this.handleChange}/>
-							<Button waves='light' onClick={this.search}>search<Icon right>search</Icon></Button>
-						</form>
+						<input type="text" placeholder="Search..." onChange={this.search} />
 						<div>
 							<div className="userName"><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</div>	
 							<Link to='/logout'><Button>Sign Out</Button></Link>
 						</div>
 					</header>
-					<Searches close={this.close} gameSearches={this.state.gameSearches} streamSearches={this.state.streamSearches} channelSearches={this.state.channelSearches}/>
+					<Searches close={this.close} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
 				</div>
 			);
 		} else {
