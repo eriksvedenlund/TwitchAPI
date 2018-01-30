@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Icon, Preloader } from 'react-materialize';
 import twitchbg from '../images/twitchbg1.jpg';
@@ -12,7 +13,8 @@ export default class Game extends React.Component{
 
 		this.state = {
 			topStreams: [],
-			isLoading: true
+			isLoading: true,
+			channelData: []
 		}
 	}
 
@@ -31,6 +33,17 @@ export default class Game extends React.Component{
 				});
 			})
 		.catch(err => console.error(err))
+
+		const db = firebase.database();
+		db.ref(`favorites/${this.props.currentUser.uid}`).on('value', (snapshot) => {
+			let data = snapshot.val();
+			let list = [];
+			for(let key in data){
+				data[key].id = key;
+				list.push(data[key]);
+			}
+			this.setState({ channelData: list });
+		});
 	}
 
 	componentDidUpdate = (prevProps, prevState) => {
@@ -51,6 +64,10 @@ export default class Game extends React.Component{
 			}
 	}
 
+	componentWillUnmount = () => {
+	  	firebase.database().ref(`favorites/${this.props.currentUser.uid}`).off('value');
+	}
+
 	renderStreams = () => {
 		let backgroundImage;
 		return(
@@ -61,7 +78,7 @@ export default class Game extends React.Component{
 					backgroundImage = {backgroundImage: `url('${item.channel.profile_banner}')`};
 				}
 				return(
-					<StreamCard backgroundImage={backgroundImage} item={item} channel={item.channel} key={index} />
+					<StreamCard channelData={this.state.channelData} currentUser={this.props.currentUser} backgroundImage={backgroundImage} item={item} channel={item.channel} key={index} />
 				);
 			})
 		);

@@ -10,7 +10,6 @@ export default class Searches extends React.Component {
 	renderGames = () => {
 		return(
 			this.props.gameSearches.slice(0, 3).map((item, index) => {
-				console.log(item);
 				return(
 					<Link onClick={this.props.close} key={index} to={{ pathname: `/game/${item.name}`}}>
 						<div className="searchGameBox">
@@ -48,28 +47,21 @@ export default class Searches extends React.Component {
 	}
 
 	render(){
-		// if(this.props.gameSearches.length > 0 || this.props.channelSearches.length > 0) {
-			return(
-				<div className="searchesContainer">
-						{this.props.gameSearches.length > 0 && 
-							<h5 style={{textAlign: 'center'}}>Games</h5>
-						}
-						<div className="searchGameContainer">
-							{this.renderGames()}
-						</div>
-						{this.props.channelSearches.length > 0 &&
-							<h5 style={{textAlign: 'center'}}>Channels</h5>
-						}
-						<div className="searchChannelContainer">
-							{this.renderChannels()}
-						</div>
-				</div>
-			);
-		// }
-		// else {
-		// 	return(
-		// 		null
-		// 	);
-		// }
+		return(
+			<div className="searchesContainer">
+					{this.props.gameSearches.length > 0 && 
+						<h5 style={{textAlign: 'center'}}>Games</h5>
+					}
+					<div className="searchGameContainer">
+						{this.renderGames()}
+					</div>
+					{this.props.channelSearches.length > 0 &&
+						<h5 style={{textAlign: 'center'}}>Channels</h5>
+					}
+					<div className="searchChannelContainer">
+						{this.renderChannels()}
+					</div>
+			</div>
+		);
 	}
 }

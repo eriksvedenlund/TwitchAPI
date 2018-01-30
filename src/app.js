@@ -10,6 +10,7 @@ import NotFound from './components/notFound';
 import LoginForm from './components/loginForm';
 import Header from './components/header';
 import Logout from './components/logout';
+import Favorites from './components/favorites';
 import './sass/index.scss';
 
 const PrivateRoute = ({component: Component, authenticated, ...rest}) => {
@@ -81,9 +82,12 @@ export default class App extends Component {
 							<Route exact path='/' render={(props) => {
 								return <LoginForm setCurrentUser={this.setCurrentUser} {...props} />
 							}} />
-						    <PrivateRoute path='/game/:id' authenticated={this.state.loggedIn} component={Game}/>
+						    <PrivateRoute path='/game/:id' currentUser={this.state.currentUser} authenticated={this.state.loggedIn} component={Game}/>
 						    <PrivateRoute exact path='/directory' authenticated={this.state.loggedIn} component={Directory}/>
 						    <Route path='/logout' component={Logout}/>
+						    <Route exact path='/favorites' render={(props) => {
+								return <Favorites currentUser={this.state.currentUser} {...props} />
+							}} />
 						    <Route path="*" component={NotFound}/>
 						</Switch>
 					</div>

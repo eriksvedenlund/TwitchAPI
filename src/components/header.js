@@ -66,7 +66,8 @@ export default class Header extends React.Component {
 			return(
 				<div>
 					<header>
-						<Link to='/directory'><Button>Directory</Button></Link>
+						<Link to='/directory'>Directory</Link>
+						<Link to='/favorites'>Favorites</Link>
 						<input type="text" placeholder="Search..." onChange={this.search} />
 						<div>
 							<div className="userName"><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</div>	
