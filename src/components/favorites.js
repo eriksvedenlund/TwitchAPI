@@ -3,12 +3,16 @@ import firebase from 'firebase';
 import { Link } from 'react-router-dom';
 import { Icon } from 'react-materialize';
 import { Preloader } from 'react-materialize';
+import FavoriteCard from './favoritecard';
 
 export default class Favorites extends React.Component {
 	constructor(){
 		super();
 
-		this.state = { channelData: [], isLoading: true}
+		this.state = { 
+			channelData: [],
+			isLoading: true
+		}
 	}
 
 	componentDidMount = () => {
@@ -35,20 +39,7 @@ export default class Favorites extends React.Component {
 		return(
 			this.state.channelData.map((item, index) => {
 				return(
-					<div style={item.background} key={index} className="streamBox">
-						<div className="overlay"></div>
-						<div className="channelBox">
-							<img src={item.logo} className="channelLogo" />
-							<div className="statsBox">
-								<Link to={item.url} target="_blank"><p><Icon left>account_circle</Icon>{item.display_name}</p></Link>
-							</div>
-							<div className="statsBox">
-								<p><Icon left>visibility</Icon>{item.views}</p>	
-								<p><Icon left>favorite</Icon>{item.followers}</p>
-							</div>
-							<span onClick={() => this.removeFromFavorites(item.id)}><Icon className="heartIcon">favorite</Icon></span>	
-						</div>
-					</div>
+					<FavoriteCard key={index} item={item} removeFromFavorites={this.removeFromFavorites} />
 				)
 			})	
 		)

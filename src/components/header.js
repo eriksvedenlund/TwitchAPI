@@ -74,7 +74,7 @@ export default class Header extends React.Component {
 							<Link to='/logout'><Button>Sign Out</Button></Link>
 						</div>
 					</header>
-					<Searches close={this.close} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
+					<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
 				</div>
 			);
 		} else {
