@@ -77,7 +77,7 @@ export default class Header extends React.Component {
 
 	render(){
 		if(this.props.loggedIn === true){
-			if(this.state.width < 665){
+			if(this.state.width < 815){
 				return(
 					<div>
 						<SideNav

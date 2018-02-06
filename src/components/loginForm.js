@@ -97,7 +97,7 @@ export default class LoginForm extends React.Component {
 		return(
 			<div className="loginWrapper">
 				<Header loggedIn={this.props.loggedIn} currentUser={this.props.currentUser}/>
-				<h3 style={{textAlign: 'center', margin: '12px 0'}}>Twitch API Project</h3>
+				<h3>Twitch API Project</h3>
 				<div className="loginContainer">
 					<form onSubmit={this.logIn}>
 						<Input label="Email" type="email" onChange={this.logInEmailChange}><Icon>mail_outline</Icon></Input>

@@ -2,6 +2,11 @@
 	height: 100%;
 	overflow: hidden;
 	background-image: url('../images/bluebg.jpg');
+
+	h3 {
+		text-align: center;
+		margin: 12px 0;
+	}
 }
 
 .loginContainer {
@@ -28,4 +33,44 @@
 .errorContainer {
 	text-align: center;
 	margin-top: 10px;
+}
+
+@media screen and (max-width: 815px) {
+
+	.loginWrapper {
+		overflow: visible;
+		height: auto;
+
+		h3 {
+			margin-top: 0;
+		}
+	}
+
+    .loginContainer {
+		height: 100%;
+	    display: flex;
+	    padding-top: 10px;
+	    flex-direction: column;
+	    align-items: center;
+
+	    form {
+	    	margin-bottom: 20px;
+	    }
+	}
+}
+
+@media screen and (max-width: 440px) {
+
+	.loginWrapper {
+		h3 {
+			font-size: 1.92rem;
+		}
+	}
+
+	.loginContainer {
+		form {
+			width: 270px;
+		}
+	}
+
 }
