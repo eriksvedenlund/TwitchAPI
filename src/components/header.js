@@ -77,9 +77,10 @@ export default class Header extends React.Component {
 
 	render(){
 		if(this.props.loggedIn === true){
-			if(this.state.width < 815){
 				return(
 					<div>
+					{this.state.width < 815 ? (
+						<div>
 						<SideNav
 							trigger={<div className="burgerMenu"><Icon>menu</Icon></div>}
 							options={{ closeOnClick: true }}
@@ -98,12 +99,8 @@ export default class Header extends React.Component {
 						<header>
 							<input type="text" className="searchInput" placeholder="Search..." onChange={this.search} />
 						</header>
-						<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
-					</div>
-				);
-			} else {
-				return(
-					<div>
+						</div>
+						) : (
 						<header>
 							<NavLink className="navLink" activeStyle={{borderBottom: '2px solid black'}} to='/directory'>Directory</NavLink>
 							<NavLink className="navLink" activeStyle={{borderBottom: '2px solid black'}} to='/favorites'>Favorites</NavLink>
@@ -113,10 +110,10 @@ export default class Header extends React.Component {
 								<Link to='/logout'><Button>Sign Out</Button></Link>
 							</div>
 						</header>
+						)}
 						<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
 					</div>
 				);
-			}
 		} else {
 			return null;
 		}

@@ -3,6 +3,24 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: white;
+
+	h2 {
+		margin: 12px 0;
+	}
+
+	img {
+		width: 500px;
+		height: 420px;
+	}
+}
+
+.jebaitedContainer {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #ededed;
 
 	h2 {
 		margin: 12px 0;

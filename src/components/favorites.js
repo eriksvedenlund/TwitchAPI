@@ -61,7 +61,7 @@ export default class Favorites extends React.Component {
 					<h3 style={{margin: '12px 0'}}>Favorite Streamers</h3>
 				}
 					{this.state.channelData.length === 0 ? (
-						<div className="notFoundContainer">
+						<div className="jebaitedContainer">
 							<h2>Nothing here. Go like something</h2>
 							<img src={Jebaited}/>
 						</div>

@@ -76,7 +76,7 @@ export default class App extends Component {
 		} else {
 			return(
 				<BrowserRouter>
-					<div style={{height: '100%'}}>
+					<div style={{height: '100%', background: '#ededed'}}>
 						<Switch>
 							<Route exact path='/' render={(props) => {
 								return <LoginForm loggedIn={this.state.loggedIn} currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} {...props} />
