@@ -4,14 +4,6 @@ import { Icon } from 'react-materialize';
 import firebase from 'firebase';
 
 export default class StreamCard extends React.Component {
-	constructor(){
-		super();
-
-		this.state = {
-			icon: 'favorite'
-		}
-	}
-
 	addToFavorites = () => {
 		firebase.database().ref(`favorites/${this.props.currentUser.uid}`).push({
 			background: this.props.backgroundImage,
@@ -31,14 +23,6 @@ export default class StreamCard extends React.Component {
 		firebase.database().ref(`favorites/${this.props.currentUser.uid}/${id}`).remove();
 	}
 
-	changeIcon = () => {
-		this.setState({ icon: 'clear' });
-	}
-
-	changeIconBack = () => {
-		this.setState({ icon: 'favorite' });
-	}
-
 	render(){
 		return(
 			<div style={this.props.backgroundImage} className="streamBox">
@@ -54,7 +38,7 @@ export default class StreamCard extends React.Component {
 						<p><Icon left>favorite</Icon>{this.props.item.channel.followers}</p>
 					</div>
 					{this.props.channelData.some(e => e.display_name === this.props.item.channel.display_name) ? (
-				        <span style={{cursor: 'pointer'}} onClick={this.removeFromFavorites} onMouseEnter={this.changeIcon} onMouseLeave={this.changeIconBack}><Icon className="heartIcon">{this.state.icon}</Icon></span>	
+				        <span style={{cursor: 'pointer'}} onClick={this.removeFromFavorites}><Icon className="heartIcon-filled">favorite</Icon></span>	
 				      ) : (
 				        <span onClick={this.addToFavorites}><Icon className="heartIcon">favorite_border</Icon></span>	
 				      )}	

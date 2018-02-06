@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Button, Icon} from 'react-materialize';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Searches from './searches';
 import firebase from 'firebase';
 
@@ -12,8 +12,17 @@ export default class Header extends React.Component {
 		this.state = {
 			gameSearches: [],
 			channelSearches: [],
-			inputVal: ''
+			inputVal: '',
+			width: window.innerWidth
 		}
+	}
+
+	componentDidMount = () => {
+		window.addEventListener("resize", this.updateDimensions);
+	}
+
+	updateDimensions = () => {
+		this.setState({width: window.innerWidth});
 	}
 
 	search = (event) => {
@@ -63,20 +72,31 @@ export default class Header extends React.Component {
 
 	render(){
 		if(this.props.loggedIn === true){
-			return(
-				<div>
-					<header>
-						<Link to='/directory'>Directory</Link>
-						<Link to='/favorites'>Favorites</Link>
-						<input type="text" placeholder="Search..." onChange={this.search} />
-						<div>
-							<div className="userName"><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</div>	
-							<Link to='/logout'><Button>Sign Out</Button></Link>
-						</div>
-					</header>
-					<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
-				</div>
-			);
+			if(this.state.width < 665){
+				return(
+					<div>
+						<header>
+							<input type="text" className="searchInput" placeholder="Search..." onChange={this.search} />
+						</header>
+						<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
+					</div>
+				);
+			} else {
+				return(
+					<div>
+						<header>
+							<NavLink className="navLink" activeStyle={{borderBottom: '2px solid black'}} to='/directory'>Directory</NavLink>
+							<NavLink className="navLink" activeStyle={{borderBottom: '2px solid black'}} to='/favorites'>Favorites</NavLink>
+							<input type="text" className="searchInput" placeholder="Search..." onChange={this.search} />
+							<div>
+								<div className="userName"><Icon left>account_circle</Icon>{this.props.currentUser.displayName}</div>	
+								<Link to='/logout'><Button>Sign Out</Button></Link>
+							</div>
+						</header>
+						<Searches close={this.close} currentUser={this.props.currentUser} gameSearches={this.state.gameSearches} channelSearches={this.state.channelSearches}/>
+					</div>
+				);
+			}
 		} else {
 			return null;
 		}

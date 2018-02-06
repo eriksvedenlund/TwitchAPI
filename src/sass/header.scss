@@ -2,14 +2,8 @@ header {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	background-color: #4B367C;
-	padding-bottom: 20px;
-	padding-top: 20px;
-
-	input {
-		width: 30% !important;
-		margin: 0 0px 8px 0 !important;
-	}
+	background-color: #0B5E99;
+	height: 80px;
 
 	.btn {
 		padding: 0 10px 0 10px;
@@ -24,4 +18,27 @@ header {
 		align-items: center;
 		margin-right: 10px;
 	}
+}
+
+.navLink{
+	color: black;
+}
+
+.navLink:hover {
+    border-bottom: 2px solid black;
+    transition: all 0.2s;
+}
+
+.searchInput {
+	width: 30% !important;
+	margin: 0 0px 8px 0 !important;
+	border-bottom: 1px solid black !important;
+}
+
+.searchInput:focus {
+	box-shadow: 0 1px 0 0 black !important;
+}
+
+::placeholder {
+	color: black;
 }

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Icon } from 'react-materialize';
 import { Preloader } from 'react-materialize';
 import FavoriteCard from './favoritecard';
+import Jebaited from '../images/jebaited.png';
+import Header from './header';
 
 export default class Favorites extends React.Component {
 	constructor(){
@@ -52,8 +54,21 @@ export default class Favorites extends React.Component {
 			);
 		}
 		return(
-			<div className="streamContainer">
-				{this.renderChannels()}
+			<div>
+				<Header loggedIn={this.props.loggedIn} currentUser={this.props.currentUser}/>
+				<div className="streamContainer">
+				{this.state.channelData.length > 0 &&
+					<h3 style={{margin: '12px 0'}}>Favorite Streamers</h3>
+				}
+					{this.state.channelData.length === 0 ? (
+						<div className="notFoundContainer">
+							<h2>Nothing here. Go like something</h2>
+							<img src={Jebaited}/>
+						</div>
+					) : (
+						this.renderChannels()
+					)}
+				</div>
 			</div>
 		);
 	}

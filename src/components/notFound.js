@@ -1,11 +1,15 @@
 import React from 'react';
-import BibleThump from '../images/biblethump.jpg'
+import BibleThump from '../images/biblethump.jpg';
+import Header from './header';
 
-const notFound = () => {
+const notFound = (props) => {
 	return(
-		<div className="notFoundContainer">
-			<h2>404: Page not found</h2>
-			<img src={BibleThump}/>
+		<div>
+			<Header loggedIn={props.loggedIn} currentUser={props.currentUser}/>
+			<div className="notFoundContainer">
+				<h2>404: Page not found</h2>
+				<img src={BibleThump}/>
+			</div>
 		</div>
 	);
 }

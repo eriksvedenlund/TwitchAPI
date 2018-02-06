@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Preloader } from 'react-materialize';
+import { Preloader, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import Header from './header';
 import firebase from 'firebase';
@@ -41,7 +41,7 @@ export default class Directory extends React.Component {
 							<img src={item.game.box.large} />
 						</Link>
 						<Link to={{ pathname: `/game/${item.game.name}`}}><p>{item.game.name}</p></Link>
-						<p>Viewers: {item.viewers}</p>
+						<div><p><Icon left>visibility</Icon>{item.viewers}</p></div>
 					</div>
 				);
 			})
@@ -55,8 +55,12 @@ export default class Directory extends React.Component {
 			);
 		} else {
 			return(
-				<div className="directoryContainer">
-					{this.renderGames()}
+				<div style={{backgroundColor: '#ededed'}}>
+					<Header loggedIn={this.props.loggedIn} currentUser={this.props.currentUser}/>
+					<h3 style={{textAlign: 'center', margin: '12px 0'}}>Top Games</h3>
+					<div className="directoryContainer">
+						{this.renderGames()}
+					</div>
 				</div>
 			);
 		}

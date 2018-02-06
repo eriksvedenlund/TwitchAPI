@@ -27,6 +27,10 @@ export default class Searches extends React.Component {
 		}
 	}
 
+	componentWillUnmount = () => {
+	  	firebase.database().ref(`favorites/${this.props.currentUser.uid}`).off('value');
+	}
+
 	addToFavorites = (profile_banner, logo, url, display_name, views, followers) => {
 		let backgroundImage;
 		if(profile_banner === null){
@@ -59,9 +63,13 @@ export default class Searches extends React.Component {
 					<Link onClick={this.props.close} key={index} to={{ pathname: `/game/${item.name}`}}>
 						<div className="searchGameBox">
 								<img src={item.box.medium} />
-								<div>
-									<p><Icon left>videogame_asset</Icon>{item.name}</p>
-									<p><Icon left>visibility</Icon>{item.popularity}</p>
+								<div className="searchStatsContainer">
+									<div>
+										<p><Icon left>videogame_asset</Icon>{item.name}</p>
+									</div>
+									<div>
+										<p><Icon left>visibility</Icon>{item.popularity}</p>
+									</div>
 								</div>
 						</div>
 					</Link>
@@ -74,20 +82,22 @@ export default class Searches extends React.Component {
 		return(
 			this.props.channelSearches.map((item, index) => {
 				return(
-					<div key={index} className="searchChannelBox">
-						<img src={item.logo} className="channelLogo" />
-						<div className="statsBox">
-							<Link to={item.url} target="_blank"><p><Icon left>account_circle</Icon>{item.display_name}</p></Link>
+					<div key={index} className="searchChannelWrapper">
+						<img src={item.logo} />
+						<div className="searchChannelBox">
+							<div className="searchStatsBox">
+								<Link to={item.url} target="_blank"><p><Icon left>account_circle</Icon>{item.display_name}</p></Link>
+							</div>
+							<div className="searchStatsBox">
+								<p><Icon left>visibility</Icon>{item.views}</p>	
+								<p><Icon left>favorite</Icon>{item.followers}</p>
+							</div>
+							{this.state.channelData.some(e => e.display_name === item.display_name) ? (
+						        <span onClick={() => this.removeFromFavorites(item.display_name)}><Icon className="heartIcon-filled">favorite</Icon></span>	
+						      ) : (
+						        <span onClick={() => this.addToFavorites(item.profile_banner, item.logo, item.url, item.display_name, item.views, item.followers)}><Icon className="heartIcon">favorite_border</Icon></span>	
+						      )}		
 						</div>
-						<div className="statsBox">
-							<p><Icon left>visibility</Icon>{item.views}</p>	
-							<p><Icon left>favorite</Icon>{item.followers}</p>
-						</div>
-						{this.state.channelData.some(e => e.display_name === item.display_name) ? (
-					        <span onClick={() => this.removeFromFavorites(item.display_name)}><Icon className="heartIcon">favorite</Icon></span>	
-					      ) : (
-					        <span onClick={() => this.addToFavorites(item.profile_banner, item.logo, item.url, item.display_name, item.views, item.followers)}><Icon className="heartIcon">favorite_border</Icon></span>	
-					      )}		
 					</div>
 				);
 			})

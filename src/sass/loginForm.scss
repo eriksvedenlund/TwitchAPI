@@ -1,23 +1,31 @@
+.loginWrapper {
+	height: 100%;
+	overflow: hidden;
+	background-image: url('../images/bluebg.jpg');
+}
+
 .loginContainer {
 	height: 100%;
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    padding-top: 40px;
+    padding-top: 10px;
 
 	form {
 		width: 400px;
 		border: 1px solid black;
 		padding: 10px;
 		box-shadow: 4px 4px 4px #666;
-
-		p {
-			text-align: center;
-		}
+		background: white;
 	}
 }
 
 .btnContainer {
 	display: flex;
 	justify-content: center;
+}
+
+.errorContainer {
+	text-align: center;
+	margin-top: 10px;
 }

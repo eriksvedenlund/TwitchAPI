@@ -4,7 +4,7 @@
     flex-direction: column;
     width: 50%;
     position: absolute;
-    background-color: lightgrey;
+    background-color: #ededed;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -23,25 +23,31 @@
 .searchGameBox {
 	display: flex;
 	align-items: center;
-	border-bottom: 1px solid black;
+	border-bottom: 0.5px solid black;
 	img {
 		width: 60px;
 	}
 	p {
-		text-align: center;
-		font-size: 18px;
 		color: black;
 	}
+}
 
-	div {
-		width: 100%;
-		display: flex;
-		justify-content: space-around;
+.searchStatsContainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+
+	div:first-child {
+		width: 150px;
+	}
+
+	div:nth-child(2) {
+		width: 100px
 	}
 }
 
 .searchGameBox:hover {
-	background-color: darkgray;
+	background-color: #e0e0e0;
 }
 
 .searchChannelContainer {
@@ -51,25 +57,37 @@
 	align-items: center;
 }
 
+.searchChannelWrapper {
+	width: 100%;
+	display: flex;
+	border-bottom: 0.5px solid black;
+
+	img {
+		width: 60px;
+		height: 72px; 
+	}
+}
+
 .searchChannelBox {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	border: 2px solid black;
-	width: 95%;
-	margin: 5px;
-	background-color: white;
+	width: inherit;
 	z-index: 1;
 
 	p {
 		margin-top: 6px;
 		margin-bottom: 6px;
+		color: black;
 	}
 }
 
-.closeIcon {
-	font-size: 30px;
-	margin-left: 5px;
-    margin-top: 5px;
-    cursor: pointer;
+.searchChannelBox:hover {
+	background-color: #e0e0e0;
+}
+
+.searchStatsBox {
+	display: flex;
+	flex-direction: column;
+	width: 150px;
 }

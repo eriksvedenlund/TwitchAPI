@@ -77,18 +77,17 @@ export default class App extends Component {
 			return(
 				<BrowserRouter>
 					<div style={{height: '100%'}}>
-						<Header loggedIn={this.state.loggedIn} currentUser={this.state.currentUser}/>
 						<Switch>
 							<Route exact path='/' render={(props) => {
-								return <LoginForm setCurrentUser={this.setCurrentUser} {...props} />
+								return <LoginForm loggedIn={this.state.loggedIn} currentUser={this.state.currentUser} setCurrentUser={this.setCurrentUser} {...props} />
 							}} />
-						    <PrivateRoute path='/game/:id' currentUser={this.state.currentUser} authenticated={this.state.loggedIn} component={Game}/>
-						    <PrivateRoute exact path='/directory' authenticated={this.state.loggedIn} component={Directory}/>
+						    <PrivateRoute path='/game/:id' loggedIn={this.state.loggedIn} authenticated={this.state.loggedIn} currentUser={this.state.currentUser} component={Game}/>
+						    <PrivateRoute exact path='/directory' loggedIn={this.state.loggedIn} authenticated={this.state.loggedIn} currentUser={this.state.currentUser} component={Directory}/>
+						    <PrivateRoute exact path='/favorites' loggedIn={this.state.loggedIn} authenticated={this.state.loggedIn} currentUser={this.state.currentUser} component={Favorites}/>
 						    <Route path='/logout' component={Logout}/>
-						    <Route exact path='/favorites' render={(props) => {
-								return <Favorites currentUser={this.state.currentUser} {...props} />
+						    <Route path='*' render={(props) => {
+								return <NotFound loggedIn={this.state.loggedIn} currentUser={this.state.currentUser} {...props} />
 							}} />
-						    <Route path="*" component={NotFound}/>
 						</Switch>
 					</div>
 				</BrowserRouter>

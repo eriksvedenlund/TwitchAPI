@@ -30,7 +30,7 @@ export default class FavoriteCard extends React.Component {
 						<p><Icon left>visibility</Icon>{this.props.item.views}</p>	
 						<p><Icon left>favorite</Icon>{this.props.item.followers}</p>
 					</div>
-					<span style={{cursor: 'pointer'}} onMouseEnter={this.changeIcon} onMouseLeave={this.changeIconBack} onClick={() => this.props.removeFromFavorites(this.props.item.id)}><Icon className="heartIcon">{this.state.icon}</Icon></span>	
+					<span style={{cursor: 'pointer'}} onMouseEnter={this.changeIcon} onMouseLeave={this.changeIconBack} onClick={() => this.props.removeFromFavorites(this.props.item.id)}><Icon className="heartIcon-filled">{this.state.icon}</Icon></span>	
 				</div>
 			</div>
 		);

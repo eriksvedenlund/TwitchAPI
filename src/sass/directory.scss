@@ -2,16 +2,30 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	background-color: #ededed;
 }
 
 .gameBox {
-	border: 1px solid black;
+	border-left: 1px solid #c9c9c9;
+	border-right: 1px solid #c9c9c9;
+	border-bottom: 1px solid #c9c9c9;
 	margin: 8px;
 	width: 200px;
 	text-align: center;
 	box-sizing: border-box !important;
 
+	p {
+		color: black;
+		margin-bottom: 6px;
+		margin-top: 6px;
+	}
+
 	img {
-		width: 198px;
+		width: 199px;
+	}
+
+	div {
+		display: flex;
+		justify-content: center;
 	}
 }

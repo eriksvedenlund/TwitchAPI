@@ -4,11 +4,13 @@
 @import './searches.scss';
 @import './notFound.scss';
 @import './loginForm.scss';
+@import url('https://fonts.googleapis.com/css?family=Aldrich|Ubuntu');
 
 html, body, #root, .contentContainer {
 	margin: 0;
 	width: 100%;
 	height: 100%;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 .loaderContainer {
