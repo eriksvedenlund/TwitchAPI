@@ -1,5 +1,5 @@
 import React from 'react';
-import BibleThump from '../images/biblethump.jpg';
+import BibleThump from '../images/biblethump.png';
 import Header from './header';
 
 const notFound = (props) => {

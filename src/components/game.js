@@ -95,7 +95,7 @@ export default class Game extends React.Component{
 					<Header loggedIn={this.props.loggedIn} currentUser={this.props.currentUser}/>
 					<div className="streamContainer">
 						<h4 style={{margin: '10px 0 10px 0'}}>Top Streamers for</h4>
-						<h3 style={{margin: '0 0 10px 0'}}>{this.state.topStreams[0].game}</h3>
+						<h3 style={{margin: '0 0 10px 0', textAlign: 'center'}}>{this.state.topStreams[0].game}</h3>
 						{this.renderStreams()}
 					</div>
 				</div>

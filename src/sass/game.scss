@@ -17,6 +17,19 @@
 	box-sizing: content-box !important;
 }
 
+.favoriteStreamBox {
+	width: 90%;
+	height: 260px;
+	margin: 8px;
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-size: 100% 100%;
+	box-sizing: content-box !important;
+}
+
 .overlay {
     position: absolute;
    	background-color: black;
@@ -85,4 +98,53 @@
     	color: white;
     	margin-top: 20px;
     }
+}
+
+@media screen and (max-width: 687px) {
+
+	.statsBox {
+		font-size: 12px;
+
+		p {
+			i {
+				font-size: 16px !important;
+			}
+		}
+	}
+
+	.heartIcon {
+		font-size: 22px;
+	}
+
+	.heartIcon-filled {
+		font-size: 22px;
+	}
+
+	.channelLogo {
+		width: 40px;
+		height: 40px;
+	}
+
+	.previewImg {
+		width: 210px;
+	}
+
+	.liveIcon {
+	    bottom: 118px;
+    	right: 90px;
+	}
+
+	.streamBox {
+		height: 260px;
+	}
+
+	.streamContainer {
+		h3 {
+			font-size: 2.28rem;
+		}
+
+		h4 {
+			font-size: 1.64rem;
+		}
+	}
 }

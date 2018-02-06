@@ -3,7 +3,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: white;
 
 	h2 {
 		margin: 12px 0;
@@ -24,10 +23,43 @@
 
 	h2 {
 		margin: 12px 0;
+		text-align: center;
 	}
 
 	img {
 		width: 500px;
 		height: 420px;
+	}
+}
+
+@media screen and (max-width: 745px) {
+
+	.jebaitedContainer {
+		h2 {
+			font-size: 2.28rem;
+		}
+	}
+
+}
+
+@media screen and (max-width: 510px) {
+
+	.jebaitedContainer{
+		img {
+			width: 320px;
+			height: 268px;
+		}
+	}
+
+	.notFoundContainer {
+
+		h2 {
+			font-size: 2.28rem;
+		}
+
+		img {
+			width: 320px;
+			height: 268px;
+		}
 	}
 }

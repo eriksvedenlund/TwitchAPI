@@ -19,7 +19,7 @@ export default class FavoriteCard extends React.Component {
 
 	render(){
 		return(
-			<div style={this.props.item.background} className="streamBox">
+			<div style={this.props.item.background} className="favoriteStreamBox">
 				<div className="overlay"></div>
 				<div className="channelBox">
 					<img src={this.props.item.logo} className="channelLogo" />
