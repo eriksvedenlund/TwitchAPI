@@ -1,9 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import {Button, Icon} from 'react-materialize';
+import {Button, Icon, SideNav, SideNavItem} from 'react-materialize';
 import { Link, NavLink } from 'react-router-dom';
 import Searches from './searches';
 import firebase from 'firebase';
+import pac from '../images/pac.jpg';
 
 export default class Header extends React.Component {
 	constructor(){
@@ -23,6 +24,10 @@ export default class Header extends React.Component {
 
 	updateDimensions = () => {
 		this.setState({width: window.innerWidth});
+	}
+
+	componentWillUnmount = () => {
+		window.removeEventListener("resize", this.updateDimensions);
 	}
 
 	search = (event) => {
@@ -75,6 +80,21 @@ export default class Header extends React.Component {
 			if(this.state.width < 665){
 				return(
 					<div>
+						<SideNav
+							trigger={<div className="burgerMenu"><Icon>menu</Icon></div>}
+							options={{ closeOnClick: true }}
+							>
+							<SideNavItem userView
+								user={{
+									background: pac,
+									name: this.props.currentUser.displayName,
+								}}
+							/>
+							<NavLink activeStyle={{fontSize: '20px'}} to='/directory'>Directory</NavLink>
+							<NavLink activeStyle={{fontSize: '20px'}} to='/favorites'>Favorites</NavLink>
+							<SideNavItem divider />
+							<Link to='/logout'><Button>Sign Out</Button></Link>
+						</SideNav>
 						<header>
 							<input type="text" className="searchInput" placeholder="Search..." onChange={this.search} />
 						</header>
