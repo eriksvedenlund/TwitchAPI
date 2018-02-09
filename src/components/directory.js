@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Preloader, Icon } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import Header from './header';
-import firebase from 'firebase';
 
 export default class Directory extends React.Component {
 	constructor(){

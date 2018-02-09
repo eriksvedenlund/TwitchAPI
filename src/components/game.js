@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import firebase from 'firebase';
-import { Link } from 'react-router-dom';
-import { Icon, Preloader } from 'react-materialize';
+import { Preloader } from 'react-materialize';
 import twitchbg from '../images/twitchbg1.jpg';
 import StreamCard from './streamCard';
 import Header from './header';

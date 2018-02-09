@@ -86,8 +86,86 @@
 	background-color: #e0e0e0;
 }
 
+.searchStatsWrapper {
+	display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .searchStatsBox {
 	display: flex;
 	flex-direction: column;
 	width: 150px;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.searchesContainer {
+		width: 70%;
+	}
+
+	.searchChannelBox {
+		.heartIcon {
+			font-size: 30px;
+		}
+
+		.heartIcon-filled {
+			font-size: 30px;
+		}
+	}
+}
+
+@media screen and (max-width: 687px) {
+
+	.searchesContainer {
+		width: 92%;
+	}
+
+	.searchChannelBox {
+		.heartIcon {
+			font-size: 30px;
+		}
+
+		.heartIcon-filled {
+			font-size: 30px;
+		}
+	}
+}
+@media screen and (max-width: 460px) {
+
+	.searchChannelBox {
+
+		.searchStatsBox {
+			width: 100px;
+
+			p {
+				font-size: 12px;
+				i {
+					margin-right: 10px;
+					font-size: 16px !important;
+				}
+			}
+		}
+
+		.heartIcon {
+			font-size: 22px;
+		}
+
+		.heartIcon-filled {
+			font-size: 22px;
+		}
+	}
+
+
+	.searchStatsContainer {
+		div {
+			p {
+				font-size: 12px;
+				i {
+					margin-right: 10px;
+					font-size: 16px !important;
+				}
+			}
+		}
+	}
 }

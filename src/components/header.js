@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Button, Icon, SideNav, SideNavItem} from 'react-materialize';
 import { Link, NavLink } from 'react-router-dom';
 import Searches from './searches';
-import firebase from 'firebase';
 import pac from '../images/pac.jpg';
 
 export default class Header extends React.Component {

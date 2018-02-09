@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import { Icon } from 'react-materialize';
 import twitchbg from '../images/twitchbg1.jpg';
-import StreamCard from './streamCard';
-import Header from './header';
 
 export default class Searches extends React.Component {
 	constructor(){
