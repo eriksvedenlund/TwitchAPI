@@ -1,6 +1,6 @@
 # Twitch API Project
 
-![Alt text](src/images/screenshot.PNG?raw=true "Twitch API Project")
+![Alt text](src/images/recording.gif?raw=true "Twitch API Project")
 
 ## Description
 

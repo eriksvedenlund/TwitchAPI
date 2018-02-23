@@ -69,6 +69,7 @@ export default class App extends Component {
 
 			
 	render(){
+		console.log(this.state.loggedIn);
 		if(this.state.loggedIn === null){
 			return(
 				<div className="loaderContainer"><Preloader size='big' /></div>
