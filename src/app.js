@@ -12,6 +12,7 @@ import Header from './components/header';
 import Logout from './components/logout';
 import Favorites from './components/favorites';
 import './sass/index.scss';
+import config from './firebaseConfig';
 
 const PrivateRoute = ({component: Component, authenticated, ...rest}) => {
 	return (
@@ -33,14 +34,7 @@ export default class App extends Component {
 		}
 
 		if (!firebase.apps.length) {
-			firebase.initializeApp({
-			    apiKey: "AIzaSyDFYEPkxUuFCr9XzUXGZd-bW9BfjWRDkhI",
-			    authDomain: "twitchapi-ad297.firebaseapp.com",
-			    databaseURL: "https://twitchapi-ad297.firebaseio.com",
-			    projectId: "twitchapi-ad297",
-			    storageBucket: "twitchapi-ad297.appspot.com",
-			    messagingSenderId: "82135490189"
-			  });
+			firebase.initializeApp(config);
 		}
 
 		firebase.auth().onAuthStateChanged((user) => {
